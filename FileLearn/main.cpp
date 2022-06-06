@@ -15,9 +15,9 @@ int main(int argc, const char * argv[]) {
     string filename = argv[1];
     if( filename == "" )
         filename = "example.txt";
-    cout << filename << endl;
-    putit(filename, "Hello World!\n");
-    putit(filename, "This is a line that is appended.\n", true);
+//    cout << filename << endl;
+//    putit(filename, "Hello World!\n");
+//    putit(filename, "This is a line that is appended.\n", true);
 //    getit(filename);
     
     filename = "access.log-20220605";
