@@ -21,6 +21,8 @@ string getit(string filename) {
         LogEntry myLogEntry(temp);
         cout << myLogEntry.getIP() << endl;
         cout << myLogEntry.getLoggedInUser() << endl;
+        cout << myLogEntry.getRequestHost() << endl;
+        cout << myLogEntry.getRequestURI() << endl;
     }
     myfile.close();
     return "\n";
