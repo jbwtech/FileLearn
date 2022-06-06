@@ -16,10 +16,11 @@ string getit(string filename) {
     string text, temp;
     myfile.open(filename);
     
-    for( int i = 0; i < 10; i++) {
+    for( int i = 0; i < 2; i++) {
         getline( myfile, temp );
         LogEntry myLogEntry(temp);
-        cout << myLogEntry.getRequest() << endl;
+        cout << myLogEntry.getIP() << endl;
+        cout << myLogEntry.getLoggedInUser() << endl;
     }
     myfile.close();
     return "\n";
