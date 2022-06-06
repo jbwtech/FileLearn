@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7D4C5F17284DAD01003D6556 /* LogEntry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7D4C5F15284DAD01003D6556 /* LogEntry.cpp */; };
+		7DDC1307284D42530061BD45 /* filelearn.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7DDC1305284D42530061BD45 /* filelearn.cpp */; };
 		7DE5E58C284D0F60006D9553 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7DE5E58B284D0F60006D9553 /* main.cpp */; };
 /* End PBXBuildFile section */
 
@@ -23,6 +25,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		7D4C5F15284DAD01003D6556 /* LogEntry.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = LogEntry.cpp; sourceTree = "<group>"; };
+		7D4C5F16284DAD01003D6556 /* LogEntry.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = LogEntry.hpp; sourceTree = "<group>"; };
+		7DDC1305284D42530061BD45 /* filelearn.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = filelearn.cpp; sourceTree = "<group>"; };
+		7DDC1306284D42530061BD45 /* filelearn.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = filelearn.hpp; sourceTree = "<group>"; };
 		7DE5E588284D0F60006D9553 /* FileLearn */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = FileLearn; sourceTree = BUILT_PRODUCTS_DIR; };
 		7DE5E58B284D0F60006D9553 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -58,6 +64,10 @@
 			isa = PBXGroup;
 			children = (
 				7DE5E58B284D0F60006D9553 /* main.cpp */,
+				7DDC1305284D42530061BD45 /* filelearn.cpp */,
+				7D4C5F15284DAD01003D6556 /* LogEntry.cpp */,
+				7D4C5F16284DAD01003D6556 /* LogEntry.hpp */,
+				7DDC1306284D42530061BD45 /* filelearn.hpp */,
 			);
 			path = FileLearn;
 			sourceTree = "<group>";
@@ -119,6 +129,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7DDC1307284D42530061BD45 /* filelearn.cpp in Sources */,
+				7D4C5F17284DAD01003D6556 /* LogEntry.cpp in Sources */,
 				7DE5E58C284D0F60006D9553 /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
