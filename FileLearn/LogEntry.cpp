@@ -105,39 +105,55 @@ LogEntry::LogEntry(string text) {
         tempstr = text.substr(currentPosition, found - currentPosition);
         currentPosition = found + 1;
         status = stoi(tempstr);
-    cout <<  "Substring at " << currentPosition << ": " << text.substr(currentPosition,1) << endl;
         cout << "CTOR Status: " << status << endl;
-        cout << "CTOR Status Size: " << tempstr.size() << endl;
-        cout << "CTOR Current Position: " << currentPosition << endl;
     }
 
     found = text.find(" ", currentPosition);
 
     if( found > currentPosition ) {
         tempstr = text.substr(currentPosition, found - currentPosition);
-        currentPosition = found + tempstr.size();
+        currentPosition = found + 1;
         bodyBytesSent = stoi(tempstr);
         cout << "CTOR Body Bytes Sent: " << bodyBytesSent << endl;
     }
 
-    cout <<  "Substring at " << currentPosition << ": " << text.substr(currentPosition,1) << endl;
-
     string referrer = "";
-    
-    strEnd = text.find("\"", strBegin);
-
-    cout << "CTOR strBegin: " << strBegin << endl;
 
     strBegin = text.find("\"", currentPosition);
-    if( strBegin > currentPosition) {
+    strEnd = text.find("\"", strBegin + 1);
+    if( strBegin >= currentPosition) {
         currentPosition = strBegin;
         strEnd = text.find("\"", currentPosition + 1);
         referrer = text.substr(strBegin + 1, strEnd - strBegin - 1);
-        currentPosition += referrer.size() + 2;
+        currentPosition += referrer.size() + 3;
     }
     cout << "CTOR Referrer: " << referrer << endl;
-    cout << "CTOR Current Position: " << currentPosition << endl;
 
+    string userAgent = "";
+
+    strBegin = text.find("\"", currentPosition);
+    strEnd = text.find("\"", strBegin + 1);
+
+    if( strBegin >= currentPosition) {
+        currentPosition = strBegin;
+        strEnd = text.find("\"", currentPosition + 1);
+        userAgent = text.substr(strBegin + 1, strEnd - strBegin - 1);
+        currentPosition += userAgent.size() + 3;
+    }
+    cout << "CTOR User Agent: " << userAgent << endl;
+
+    string xForwardedFor = "";
+
+    strBegin = text.find("\"", currentPosition);
+    strEnd = text.find("\"", strBegin + 1);
+
+    if( strBegin >= currentPosition) {
+        currentPosition = strBegin;
+        strEnd = text.find("\"", currentPosition + 1);
+        xForwardedFor = text.substr(strBegin + 1, strEnd - strBegin - 1);
+        currentPosition += xForwardedFor.size() + 3;
+    }
+    cout << "CTOR User X-Forwarded-For: " << xForwardedFor << endl;
 }
 
 LogEntry::~LogEntry() {
