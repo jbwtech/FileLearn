@@ -16,13 +16,14 @@ string getit(string filename) {
     string text, temp;
     myfile.open(filename);
     
-    for( int i = 0; i < 2; i++) {
+    for( int i = 0; i < 10000; i++) {
         getline( myfile, temp );
         LogEntry myLogEntry(temp);
-        cout << myLogEntry.getIP() << endl;
-        cout << myLogEntry.getLoggedInUser() << endl;
-        cout << myLogEntry.getRequestHost() << endl;
-        cout << myLogEntry.getRequestURI() << endl;
+        cout << "IP Address    : " << myLogEntry.getIP() << endl;
+        cout << "Logged In User: " << myLogEntry.getLoggedInUser() << endl;
+        cout << "Request Host  : " << myLogEntry.getRequestHost() << endl;
+        cout << "Request URI   : " << myLogEntry.getRequestURI() << endl;
+        cout << "i: " << i << endl;
     }
     myfile.close();
     return "\n";

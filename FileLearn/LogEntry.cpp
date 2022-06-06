@@ -153,7 +153,7 @@ LogEntry::LogEntry(string text) {
         xForwardedFor = text.substr(strBegin + 1, strEnd - strBegin - 1);
         currentPosition += xForwardedFor.size() + 3;
     }
-    cout << "CTOR User X-Forwarded-For: " << xForwardedFor << endl;
+    cout << "CTOR X-Forwarded-For: " << xForwardedFor << endl;
 }
 
 LogEntry::~LogEntry() {
@@ -185,10 +185,13 @@ string LogEntry::getRequestHost() {
 
 string LogEntry::getRequestURI() {
     size_t slash_pos = request.find("/", 0);
-
-    if( slash_pos == 0 )
-        return request;
-    else
-        return request.substr(slash_pos, request.size() - slash_pos);
+    switch( int(slash_pos) ) {
+        case -1:
+        case  0:
+            return request;
+            break;
+        default:
+            return request.substr(slash_pos, request.size() - slash_pos);
+    }
 }
 
