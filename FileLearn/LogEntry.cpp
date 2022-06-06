@@ -12,7 +12,7 @@
 using namespace std;
 
 LogEntry::LogEntry(string text) {
-    cout << text.substr(0,text.find(" "));
+    request = text;
 }
 
 LogEntry::~LogEntry() {
