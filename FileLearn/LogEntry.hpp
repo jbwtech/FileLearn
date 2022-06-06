@@ -24,6 +24,7 @@ private:
      '$status $body_bytes_sent "$http_referer" '
      '"$http_user_agent" "$http_x_forwarded_for"'
      */
+    string logentry;
     string ipAddress;
     string loggedInUser;
     string dateTime;
@@ -39,5 +40,8 @@ public:
     LogEntry();
     LogEntry(string text);
     ~LogEntry();
-     string getRequest();
+    string getEntry();
+    string getIP();
+    string getLoggedInUser();
+    string getRequest();
 };
