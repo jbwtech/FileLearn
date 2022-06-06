@@ -19,7 +19,7 @@ string getit(string filename) {
     for( int i = 0; i < 10; i++) {
         getline( myfile, temp );
         LogEntry myLogEntry(temp);
-        cout << temp << endl;
+        cout << myLogEntry.getRequest() << endl;
     }
     myfile.close();
     return "\n";
