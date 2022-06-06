@@ -175,3 +175,20 @@ string LogEntry::getLoggedInUser() {
 string LogEntry::getRequest() {
     return request;
 }
+
+string LogEntry::getRequestHost() {
+    if( request.find("/",0) != 0 )
+        return request.substr(0, request.find("/",0));
+    else
+        return "";
+}
+
+string LogEntry::getRequestURI() {
+    size_t slash_pos = request.find("/", 0);
+
+    if( slash_pos == 0 )
+        return request;
+    else
+        return request.substr(slash_pos, request.size() - slash_pos);
+}
+

@@ -44,4 +44,6 @@ public:
     string getIP();
     string getLoggedInUser();
     string getRequest();
+    string getRequestHost();
+    string getRequestURI();
 };
