@@ -11,6 +11,7 @@
 #include <stdio.h>
 
 #endif /* LogEntry_hpp */
+
 #include <iostream>
 #include <string>
 
@@ -46,4 +47,11 @@ public:
     string getRequest();
     string getRequestHost();
     string getRequestURI();
+    string getRequestProtocol();
+    int getStatus();
+    int getBodyBytesSent();
+    string getReferrer();
+    string getUserAgent();
+    string getXForwardedFor();
 };
+

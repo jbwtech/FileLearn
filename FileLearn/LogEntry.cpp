@@ -19,15 +19,15 @@ LogEntry::LogEntry(string text) {
 
     size_t currentPosition = 0, found = 0;
 
-    logentry = text;
-    cout << "CTOR Log Entry: " << logentry << endl;
+    this->logentry = text;
+//    cout << "CTOR Log Entry: " << this->logentry << endl;
 
     found = text.find(" ", currentPosition);
 
     if( found > currentPosition ) {
-        ipAddress = text.substr(currentPosition, found - currentPosition);
+        this->ipAddress = text.substr(currentPosition, found - currentPosition);
         currentPosition = found + 1;
-        cout << "CTOR IP Address: " << ipAddress << endl;
+//        cout << "CTOR IP Address: " << this->ipAddress << endl;
     }
 
     found = text.find(" ", currentPosition);
@@ -35,15 +35,15 @@ LogEntry::LogEntry(string text) {
     if( found > currentPosition ) {
         string dash = text.substr(currentPosition, found - currentPosition);
         currentPosition = found + 1;
-        cout << "CTOR Literal dash: " << dash << endl;
+//        cout << "CTOR Literal dash: " << dash << endl;
     }
 
     found = text.find(" ", currentPosition);
 
     if( found > currentPosition ) {
-        loggedInUser = text.substr(currentPosition, found - currentPosition);
+        this->loggedInUser = text.substr(currentPosition, found - currentPosition);
         currentPosition = found + 1;
-        cout << "CTOR LoggedInUser: " << loggedInUser << endl;
+//        cout << "CTOR LoggedInUser: " << this->loggedInUser << endl;
     }
 
     size_t strBegin = 0, strEnd = 0;
@@ -51,9 +51,9 @@ LogEntry::LogEntry(string text) {
     strEnd = text.find("]", currentPosition);
 
     if( strBegin > 0 && strEnd > 0 ) {
-        dateTime = text.substr(strBegin, strEnd - strBegin + 1);
+        this->dateTime = text.substr(strBegin, strEnd - strBegin + 1);
         currentPosition = strEnd + 1;
-        cout << "CTOR DateTime: " << dateTime << endl;
+//        cout << "CTOR DateTime: " << this->dateTime << endl;
     }
 
     string full_request = "";
@@ -67,35 +67,35 @@ LogEntry::LogEntry(string text) {
     }
 
     if( full_request.size() > 0 ) {
-        cout << "CTOR Full Request: " << full_request << endl;
+//        cout << "CTOR Full Request: " << full_request << endl;
     } else {
-        status = 0;
-        bodyBytesSent = 0;
-        userAgent = "";
-        referrer = "";
-        xForwardedFor = "";
+        this->status = 0;
+        this->bodyBytesSent = 0;
+        this->userAgent = "";
+        this->referrer = "";
+        this->xForwardedFor = "";
         return;
     }
 
     found = full_request.find(" ", 0);
   
     if( found != 0 ) {
-        method = full_request.substr(0, found);
+        this->method = full_request.substr(0, found);
         full_request.replace(0, method.size() + 1, "");
-        cout << "CTOR Method: " << method << endl;
+//        cout << "CTOR Method: " << this->method << endl;
     }
 
     found = full_request.find(" ", 0);
   
     if( found != 0 ) {
-        request = full_request.substr(0, found);
+        this->request = full_request.substr(0, found);
         full_request.replace(0, request.size() + 1, "");
-        cout << "CTOR Request: " << request << endl;
+//        cout << "CTOR Request: " << this->request << endl;
     }
 
     if(full_request.size() > 0) {
-        serverProtocol = full_request;
-        cout << "CTOR Server Protocol: " << serverProtocol << endl;
+        this->serverProtocol = full_request;
+//        cout << "CTOR Server Protocol: " << this->serverProtocol << endl;
     }
 
     string tempstr = "";
@@ -104,8 +104,8 @@ LogEntry::LogEntry(string text) {
     if( found > currentPosition ) {
         tempstr = text.substr(currentPosition, found - currentPosition);
         currentPosition = found + 1;
-        status = stoi(tempstr);
-        cout << "CTOR Status: " << status << endl;
+        this->status = stoi(tempstr);
+//        cout << "CTOR Status: " << this->status << endl;
     }
 
     found = text.find(" ", currentPosition);
@@ -113,23 +113,9 @@ LogEntry::LogEntry(string text) {
     if( found > currentPosition ) {
         tempstr = text.substr(currentPosition, found - currentPosition);
         currentPosition = found + 1;
-        bodyBytesSent = stoi(tempstr);
-        cout << "CTOR Body Bytes Sent: " << bodyBytesSent << endl;
+        this->bodyBytesSent = stoi(tempstr);
+//        cout << "CTOR Body Bytes Sent: " << this->bodyBytesSent << endl;
     }
-
-    string referrer = "";
-
-    strBegin = text.find("\"", currentPosition);
-    strEnd = text.find("\"", strBegin + 1);
-    if( strBegin >= currentPosition) {
-        currentPosition = strBegin;
-        strEnd = text.find("\"", currentPosition + 1);
-        referrer = text.substr(strBegin + 1, strEnd - strBegin - 1);
-        currentPosition += referrer.size() + 3;
-    }
-    cout << "CTOR Referrer: " << referrer << endl;
-
-    string userAgent = "";
 
     strBegin = text.find("\"", currentPosition);
     strEnd = text.find("\"", strBegin + 1);
@@ -137,12 +123,10 @@ LogEntry::LogEntry(string text) {
     if( strBegin >= currentPosition) {
         currentPosition = strBegin;
         strEnd = text.find("\"", currentPosition + 1);
-        userAgent = text.substr(strBegin + 1, strEnd - strBegin - 1);
-        currentPosition += userAgent.size() + 3;
+        this->referrer = text.substr(strBegin + 1, strEnd - strBegin - 1);
+        currentPosition += this->referrer.size() + 3;
     }
-    cout << "CTOR User Agent: " << userAgent << endl;
-
-    string xForwardedFor = "";
+//    cout << "CTOR Referrer: " << this->referrer << endl;
 
     strBegin = text.find("\"", currentPosition);
     strEnd = text.find("\"", strBegin + 1);
@@ -150,10 +134,21 @@ LogEntry::LogEntry(string text) {
     if( strBegin >= currentPosition) {
         currentPosition = strBegin;
         strEnd = text.find("\"", currentPosition + 1);
-        xForwardedFor = text.substr(strBegin + 1, strEnd - strBegin - 1);
-        currentPosition += xForwardedFor.size() + 3;
+        this->userAgent = text.substr(strBegin + 1, strEnd - strBegin - 1);
+        currentPosition += this->userAgent.size() + 3;
     }
-    cout << "CTOR X-Forwarded-For: " << xForwardedFor << endl;
+//    cout << "CTOR User Agent: " << this->userAgent << endl;
+
+    strBegin = text.find("\"", currentPosition);
+    strEnd = text.find("\"", strBegin + 1);
+
+    if( strBegin >= currentPosition) {
+        currentPosition = strBegin;
+        strEnd = text.find("\"", currentPosition + 1);
+        this->xForwardedFor = text.substr(strBegin + 1, strEnd - strBegin - 1);
+        currentPosition += this->xForwardedFor.size() + 3;
+    }
+//    cout << "CTOR X-Forwarded-For: " << this->xForwardedFor << endl;
 }
 
 LogEntry::~LogEntry() {
@@ -161,37 +156,62 @@ LogEntry::~LogEntry() {
 }
 
 string LogEntry::getEntry() {
-    return logentry;
+    return this->logentry;
 }
 
 string LogEntry::getIP() {
-    return ipAddress;
+    return this->ipAddress;
 }
 
 string LogEntry::getLoggedInUser() {
-    return loggedInUser;
+    return this->loggedInUser;
 }
 
 string LogEntry::getRequest() {
-    return request;
+    return this->request;
 }
 
 string LogEntry::getRequestHost() {
-    if( request.find("/",0) != 0 )
-        return request.substr(0, request.find("/",0));
+    size_t slash_pos = this->request.find("/", 0);
+    if( int(slash_pos) != 0 )
+        return this->request.substr(0, slash_pos);
     else
         return "";
 }
 
 string LogEntry::getRequestURI() {
-    size_t slash_pos = request.find("/", 0);
+    size_t slash_pos = this->request.find("/", 0);
     switch( int(slash_pos) ) {
         case -1:
         case  0:
-            return request;
+            return this->request;
             break;
         default:
-            return request.substr(slash_pos, request.size() - slash_pos);
+            return this->request.substr(slash_pos, this->request.size() - slash_pos);
     }
+}
+
+string LogEntry::getRequestProtocol() {
+    return this->serverProtocol;
+}
+
+int LogEntry::getStatus() {
+    return this->status;
+}
+
+int LogEntry::getBodyBytesSent() {
+    return this->bodyBytesSent;
+}
+
+string LogEntry::getReferrer() {
+    return this->referrer;
+}
+
+string LogEntry::getUserAgent() {
+    return this->userAgent;
+}
+
+string LogEntry::getXForwardedFor() {
+    return this->xForwardedFor;
 }
 
