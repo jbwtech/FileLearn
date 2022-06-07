@@ -15,15 +15,24 @@ string getit(string filename) {
     ifstream myfile;
     string text, temp;
     myfile.open(filename);
-    
-    for( int i = 0; i < 10000; i++) {
-        getline( myfile, temp );
+    int i = 0;
+
+    while( getline( myfile, temp )) {
         LogEntry myLogEntry(temp);
-        cout << "IP Address    : " << myLogEntry.getIP() << endl;
-        cout << "Logged In User: " << myLogEntry.getLoggedInUser() << endl;
-        cout << "Request Host  : " << myLogEntry.getRequestHost() << endl;
-        cout << "Request URI   : " << myLogEntry.getRequestURI() << endl;
-        cout << "i: " << i << endl;
+        cout << "IP Address       : " << myLogEntry.getIP() << endl
+         << "Logged In User   : " << myLogEntry.getLoggedInUser() << endl
+         << "Request Host     : " << myLogEntry.getRequestHost() << endl
+         << "Request URI      : " << myLogEntry.getRequestURI() << endl
+         << "Request Protocol : " << myLogEntry.getRequestProtocol() << endl
+         << "Status           : " << myLogEntry.getStatus() << endl
+         << "Body Bytes Sent  : " << myLogEntry.getBodyBytesSent() << endl
+         << "Referrer         : " << myLogEntry.getReferrer() << endl
+         << "User Agent       : " << myLogEntry.getUserAgent() << endl
+         << "X-Forwarded-For  : " << myLogEntry.getXForwardedFor() << endl
+         << "i: " << ++i << endl;
+
+        if( i == 50000 )
+            break;
     }
     myfile.close();
     return "\n";
